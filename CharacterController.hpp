@@ -31,6 +31,9 @@ public:
     void onCollisionStart(PhysicsComponent *comp) override;
 
     void onCollisionEnd(PhysicsComponent *comp) override;
+
+    float timerCounter;
+    bool frameOne;
 private:
     sre::Sprite standing;
     sre::Sprite walk1;

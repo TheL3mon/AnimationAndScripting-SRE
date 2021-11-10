@@ -20,7 +20,8 @@ CharacterController::CharacterController(GameObject *gameObject) : Component(gam
     characterPhysics->getFixture()->SetRestitution(0);
     characterPhysics->fixRotation();
     spriteComponent = gameObject->getComponent<SpriteComponent>();
-
+    timerCounter = 0;
+    frameOne = true;
 }
 
 bool CharacterController::onKey(SDL_Event &event) {
@@ -103,7 +104,54 @@ void CharacterController::setSprites(sre::Sprite standing, sre::Sprite walk1, sr
 
 void CharacterController::updateSprite(float deltaTime) {
     auto velocity = characterPhysics->getLinearVelocity();
-    // todo implement
+    float absoluteNormalizedVelocity = 0;
+
+    if (velocity == glm::vec2(0,0))
+    {
+        this->spriteComponent->setSprite(standing);
+    }
+
+    if (velocity.x != 0 && isGrounded)
+    {
+        timerCounter += deltaTime;
+
+
+        absoluteNormalizedVelocity = (1.3-abs(velocity.x / 2)) * 0.2;
+        if (timerCounter >= absoluteNormalizedVelocity)
+        {
+            timerCounter = 0;
+            frameOne = !frameOne;
+
+            if (frameOne)
+            {
+                this->spriteComponent->setSprite(walk1);
+            }
+            else
+            {
+                this->spriteComponent->setSprite(walk2);
+            }
+        }
+    }
+    else
+    {
+        timerCounter = 0;
+    }
+
+    if (!isGrounded)
+    {
+        if (velocity.y > 0)
+        {
+            this->spriteComponent->setSprite(flyUp);
+        }
+        else if (velocity.y == 0)
+        {
+            this->spriteComponent->setSprite(fly);
+        }
+        else if (velocity.y < 0)
+        {
+            this->spriteComponent->setSprite(flyDown);
+        }
+    }
 }
 
 

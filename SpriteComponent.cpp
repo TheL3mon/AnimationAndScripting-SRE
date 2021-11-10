@@ -17,6 +17,11 @@ void SpriteComponent::setSprite(const sre::Sprite &sprite) {
     this->sprite = sprite;
 }
 
+void SpriteComponent::flipSprite(glm::bvec2 boolVector)
+{
+    sprite.setFlip(boolVector);
+}
+
 sre::Sprite SpriteComponent::getSprite() {
     return sprite;
 }

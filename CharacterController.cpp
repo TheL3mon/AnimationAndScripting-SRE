@@ -152,6 +152,15 @@ void CharacterController::updateSprite(float deltaTime) {
             this->spriteComponent->setSprite(flyDown);
         }
     }
+
+    if (velocity.x < 0)
+    {
+        this->spriteComponent->flipSprite(glm::bvec2(true,false));
+    }
+    else
+    {
+        this->spriteComponent->flipSprite(glm::bvec2(false, false));
+    }
 }
 
 

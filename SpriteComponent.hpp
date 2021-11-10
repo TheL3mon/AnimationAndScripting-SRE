@@ -11,6 +11,8 @@ public:
 
     void setSprite(const sre::Sprite& sprite);
     sre::Sprite getSprite();
+
+    void flipSprite(glm::bvec2 boolVec);
 private:
     sre::Sprite sprite;
 };

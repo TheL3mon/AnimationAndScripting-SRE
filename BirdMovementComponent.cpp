@@ -19,10 +19,10 @@ glm::vec2 BirdMovementComponent::computePositionAtTime(float time) {
     segment = segment * 2;
 
     // todo use Quadratic Bézier spline instead
-    glm::vec2 positionVec = (1 - t)*(1 - t) * positions[segment] + 2 * t * (1 - t) * positions[segment + 1] + t*t * positions[segment + 2];
-    std::cout << "Pos: " << positionVec.x << " , " << positionVec.y << std::endl;
+    glm::vec2 positionVec = (1 - t)*(1 - t) * positions[segment] + 2 * (1 - t) * t * positions[segment + 1] + t*t * positions[segment + 2];
+    //std::cout << "Pos: " << positionVec.x << " , " << positionVec.y << std::endl;
     
-    return glm::mix(positions[segment], positionVec, t);
+    return glm::mix(positionVec, positionVec, t);
 }
 
 const std::vector<glm::vec2> &BirdMovementComponent::getPositions() {

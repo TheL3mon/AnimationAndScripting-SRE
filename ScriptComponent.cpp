@@ -24,7 +24,11 @@ ScriptComponent::ScriptComponent(GameObject *gameObject) : Component(gameObject)
 
                 //functions
                 "setPosition", &GameObject::setPosition,
-                "getPosition", &GameObject::getPosition
+                "getPosition", &GameObject::getPosition,
+                "setRotation", &GameObject::setRotation,
+                "getRotation", &GameObject::getRotation,
+                "renderSprite", &GameObject::renderSprite,
+                "getComponents", &GameObject::getComponents
                 //TODO: assignment - implement the variables and functions you need from GameObject.
     );
 
@@ -158,17 +162,17 @@ void ScriptComponent::update(float deltaTime) {
     }
 }
 
-/*
-void ScriptComponent::renderSprite(SpriteBatch::SpriteBatchBuilder& spriteBatchBuilder) {
-    //TODO: handle rendering through Lua
-}
 
-void ScriptComponent::onCollisionStart(PhysicsComponent* comp) {
-    //TODO: handle collision events through Lua
-}
+//void ScriptComponent::renderSprite(SpriteBatch::SpriteBatchBuilder& spriteBatchBuilder) {
+//    //TODO: handle rendering through Lua
+//}
+//
+//void ScriptComponent::onCollisionStart(PhysicsComponent* comp) {
+//    //TODO: handle collision events through Lua
+//}
+//
+//void ScriptComponent::onCollisionEnd(PhysicsComponent* comp) {
+//    //TODO: handle collision events through Lua
+//}
 
-void ScriptComponent::onCollisionEnd(PhysicsComponent* comp) {
-    //TODO: handle collision events through Lua
-}
-*/
 
